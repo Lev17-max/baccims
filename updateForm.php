@@ -10,6 +10,10 @@
  $details = $_POST['incident-details-update'];
  $place = $_POST['incident-place-update'];
  $incident = $_POST['incident-type-update'];
+
+ $instruct = $_POST['up-case-disp'];
+ $investigator = $_POST['up-case-investigator'];
+ $chief = $_POST['up-case-chief'];
  //item-a-update
  $fmname_item_a = ucfirst(strtolower($_POST['item-a-update-family-name']));
  $fname_item_a = ucfirst(strtolower($_POST['item-a-update-first-name']));
@@ -123,7 +127,7 @@
                                                             `OTHER_PROVINCE` = :prov2,  `HIGHEST_EDUCATION` = :educ,
                                                             `OCCUPATION` = :work, `ID_PRESENTED` = :id_h, `EMAIL` = :email;
 
-                                                INSERT INTO `item_d`(`ID`,`BLOTTER_ENTRY_NUMBER`, `DATETIME_HAPPEN`, `PLACE_ID`, `DETAILS`)
+                                                INSERT IGNORE INTO `item_d`(`ID`,`BLOTTER_ENTRY_NUMBER`, `DATETIME_HAPPEN`, `PLACE_ID`, `DETAILS`)
                                                         VALUES(:id,:ben,:dthap,:place,:det)
                                                         ON DUPLICATE KEY 
                                                 UPDATE `DATETIME_HAPPEN` = :dthap, `PLACE_ID` = :place , `DETAILS` = :det;
@@ -131,7 +135,14 @@
                                                 INSERT IGNORE INTO `incident`(`ID`,`BLOTTER_ENTRY_NUMBER`, `DATETIME_FILED`, `TYPE_OF_INCIDENT_ID`, `STATUS`) 
                                                         VALUES (:id,:ben,:dtfil,:inc,:stats) 
                                                         ON DUPLICATE KEY 
-                                                UPDATE `DATETIME_FILED` = :dtfil, `TYPE_OF_INCIDENT_ID` = :inc , `STATUS` = :stats;');
+                                                UPDATE `DATETIME_FILED` = :dtfil, `TYPE_OF_INCIDENT_ID` = :inc , `STATUS` = :stats;
+                                                
+                                                INSERT IGNORE INTO `incident_case_disposition`(`ID`,`BLOTTER_ENTRY_NUMBER`, `INSTRUCTION`, `INVESTIGATOR`, `CHIEF`) 
+                                                        VALUES (:id,:ben,:instruct,:invst,:chief)
+                                                        ON DUPLICATE KEY 
+                                                UPDATE `INSTRUCTION` = :instruct, `INVESTIGATOR` = :invst , `CHIEF` = :chief;
+                                                
+                                                ');
 
 $query ->bindParam(':id', $crimeid);
 $query ->bindParam(':fmname', $fmname_item_a);
@@ -169,6 +180,11 @@ $query ->bindParam(':stats', $status);
 $query ->bindParam(':det', $details);
 $query ->bindParam(':dthap', $dtHappened);
 $query ->bindParam(':place', $place);
+
+
+$query ->bindParam(':instruct', $instruct);
+$query ->bindParam(':invst', $investigator);
+$query ->bindParam(':chief', $chief);
 $query->execute();
 
 

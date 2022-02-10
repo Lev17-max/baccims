@@ -18,8 +18,8 @@
                                 <option selected disabled value="">TYPE OF INCIDENT</option>
                                 <option value="504">OTHER</option>
                                 <?php include 'display_incident.php'; ?>
-                                
-                               
+
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <label>PLACE OF INCIDENT</label>
                                     <select class="form-control select2" id="incident-place" name="incident-place" style="width: 100%;" required>
-                                        
+
                                         <?php include 'show_places.php'; ?>
                                     </select>
                                 </div>
@@ -85,8 +85,8 @@
                         <br>
                     </div>
                     <div class="col-lg-12">
-                        <label >NOTE: ENTER IN DETAIL THE NARRATIVE OF THE INCIDENT OR EVENT, ANSWERING THE WHO, WHAT, WHEN, WHERE, WHY AND HOW OF REPORTING.</textarea>
-                            </label>
+                        <label>NOTE: ENTER IN DETAIL THE NARRATIVE OF THE INCIDENT OR EVENT, ANSWERING THE WHO, WHAT, WHEN, WHERE, WHY AND HOW OF REPORTING.</textarea>
+                        </label>
                         <div class="card">
                             <textarea required id="incident-details" name="incident-details" style="height:150px;" col="200px"></textarea>
                         </div>
@@ -107,36 +107,73 @@
                 </div>
             </div>
             <div class="con-suspect m-0">
-            <div class="card card-secondary m-0 suspect">
-                <div class="card-header">
-                <h1 class="card-title"> ITEM B - (SUSPECT DATA) </h1>
-                    <div class="card-tools">
-                        <a href="" class="add-suspect"><i class="fas fa-plus-circle"></i> ADD SUSPECT</a>
-                        &nbsp
-                        <a href="" class="minus-suspect"><i class="fas fa-minus-circle "></i> REMOVE</a>
+                <div class="card card-secondary m-0 suspect">
+                    <div class="card-header">
+                        <h1 class="card-title"> ITEM B - (SUSPECT DATA) </h1>
+                        <div class="card-tools">
+                            <a href="" class="add-suspect"><i class="fas fa-plus-circle"></i> ADD SUSPECT</a>
+                            &nbsp
+                            <a href="" class="minus-suspect"><i class="fas fa-minus-circle "></i> REMOVE</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <?php include 'form_item_b.php'; ?>
                     </div>
                 </div>
-                <div class="card-body">
-                    <?php include 'form_item_b.php'; ?>
-                </div>
-            </div>
             </div>
             <div class="con-victim m-0">
-            <div class="card m-0 card-secondary victim">
-                <div class="card-header">
-                    <h1 class="card-title"> ITEM C - (VICTIM DATA) </h1>
-                    <div class="card-tools">
-                        <a href="" class="add-victim"><i class="fas fa-plus-circle"></i> ADD VICTIM</a>
-                        &nbsp
-                        <a href="" class="minus-victim"><i class="fas fa-minus-circle "></i> REMOVE</a>
+                <div class="card m-0 card-secondary victim">
+                    <div class="card-header">
+                        <h1 class="card-title"> ITEM C - (VICTIM DATA) </h1>
+                        <div class="card-tools">
+                            <a href="" class="add-victim"><i class="fas fa-plus-circle"></i> ADD VICTIM</a>
+                            &nbsp
+                            <a href="" class="minus-victim"><i class="fas fa-minus-circle "></i> REMOVE</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <?php include 'form_item_c.php'; ?>
                     </div>
                 </div>
-                <div class="card-body">
-                    <?php include 'form_item_c.php'; ?>
+                <div class="card m-0 card-secondary">
+                    <div class="card-header">
+                        <h1 class="card-title">CASE DISPOSITION</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>OFFICE INSTRUCTION:</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control case-disp" name="case-disp" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>INVESTIGATOR-ON-CASE:</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control case-investigator" name="case-investigator" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                    <label> CHIEF OF STATION/OFFICE:</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control case-chief" name="case-chief" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            </div>
-            <input type="submit" id="submit-form"  class="btn btn-primary">
-        </div> 
+            <input type="submit" id="submit-form" class="btn btn-primary">
+        </div>
     </form>
 </div>

@@ -170,6 +170,7 @@ foreach ($crime_volumedata as $key => $value) {
     $array2[] = $value['MONTHS'];
 
 }
+if(!empty($array1) && !empty($array2)){
 
 
 foreach ($popdata as $key => $value) {
@@ -233,6 +234,7 @@ if (!empty($solutionarrm)) {
 
         $ticks++;
     }
+}
 }
 
 

@@ -163,11 +163,19 @@
                                  success: function (response) {
 
                                      let values = JSON.parse(response);
+                                 
          
                                      $('#id-holder-update').val(values[0]['ID']);
                                      $('#blot-num-up').val(values[0]['BLOTTER_ENTRY_NUMBER']);
                                      $('#date-reported-update').val(values[0]['DATETIME_FILED']);
                                      $('#date-happened-update').val(values[0]['DATETIME_HAPPEN']);
+
+                                     $('.up-case-disp').val(values[0]['INSTRUCTION']);
+                                     $('.up-case-investigator').val(values[0]['INVESTIGATOR']);
+                                     $('.up-case-chief').val(values[0]['CHIEF']);
+
+
+
                                      $('#incident-place-update').val(values[0]['PLACE_ID']).change();
                                      $('#incident-details-update').text(values[0][9]);
                                      $('#inc-type-up').val(values[0]['TYPE_OF_INCIDENT_ID']).change();
@@ -187,7 +195,6 @@
 
                                             let valuesitema = JSON.parse(itemares);
                                             let input = document.querySelectorAll('.input-item-a-update');
-                                            console.log(valuesitema);
 
                                             for (let index = 0; index < input.length; index++) {
                                                 input[index].value = valuesitema[0][index];

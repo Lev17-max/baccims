@@ -10,6 +10,11 @@
  $details = $_POST['incident-details'];
  $place = $_POST['incident-place'];
  $incident = $_POST['incident-type'];
+
+ $instruct = $_POST['case-disp'];
+ $investigator = $_POST['case-investigator'];
+ $chief = $_POST['case-chief'];
+
  //item-a
  $fmname_item_a = ucfirst(strtolower($_POST['item-a-family-name']));
  $fname_item_a = ucfirst(strtolower($_POST['item-a-first-name']));
@@ -107,7 +112,12 @@
                                          VALUES(:ben,:dthap,:place,:det);
 
                                   INSERT IGNORE INTO `incident`(`BLOTTER_ENTRY_NUMBER`, `DATETIME_FILED`, `TYPE_OF_INCIDENT_ID`, `STATUS`) 
-                                         VALUES (:ben,:dtfil,:inc,:stats);');
+                                         VALUES (:ben,:dtfil,:inc,:stats);
+
+                                  INSERT INTO `incident_case_disposition`(`BLOTTER_ENTRY_NUMBER`, `INSTRUCTION`, `INVESTIGATOR`, `CHIEF`) 
+                                         VALUES (:ben,:instruct,:invst,:chief);
+                                         
+                                         ');
 
 
 $query ->bindParam(':fmname', $fmname_item_a);
@@ -145,6 +155,10 @@ $query ->bindParam(':stats', $status);
 $query ->bindParam(':det', $details);
 $query ->bindParam(':dthap', $dtHappened);
 $query ->bindParam(':place', $place);
+
+$query ->bindParam(':instruct', $instruct);
+$query ->bindParam(':invst', $investigator);
+$query ->bindParam(':chief', $chief);
 $query->execute();
 if($query){
         

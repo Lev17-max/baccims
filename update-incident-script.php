@@ -9,6 +9,7 @@ $id = $_POST['id'];
 
 $query = $connect->prepare("SELECT * FROM `incident` inc 
 JOIN item_d itd ON inc.BLOTTER_ENTRY_NUMBER = itd.BLOTTER_ENTRY_NUMBER
+JOIN incident_case_disposition icd ON inc.BLOTTER_ENTRY_NUMBER = icd.BLOTTER_ENTRY_NUMBER
 WHERE inc.ID = :id");
 $query->bindParam(':id', $id);
 $query->execute();

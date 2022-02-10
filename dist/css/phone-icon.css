@@ -1,0 +1,20 @@
+.phone {
+    text-indent: 20px;
+    margin-bottom: 1em;
+  }
+
+  .countrycode {
+    position: absolute; 
+    left: 9px;
+    top: 1px;
+    height: 100%;
+    line-height: 37px;
+    color: #a0a6ab;
+    z-index: 12;
+    user-select: none;
+  }
+
+  .phone-icon {
+    position: relative;
+    height: 38px;
+  }

@@ -107,6 +107,46 @@
               <div id="loader-item-b" class="con-suspect-update"> <?php include 'form-b-update.php'; ?></div>
                
                <div id="loader-item-c" class="con-victim-update"><?php include 'form-c-update.php'; ?></div> 
+
+               <div class="card m-0 card-secondary">
+                    <div class="card-header">
+                        <h1 class="card-title">CASE DISPOSITION</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>OFFICE INSTRUCTION:</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control up-case-disp" name="up-case-disp" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>INVESTIGATOR-ON-CASE:</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control up-case-investigator" name="up-case-investigator" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                    <label> CHIEF OF STATION/OFFICE:</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control up-case-chief" name="up-case-chief" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
                
             <input type="submit" id="submit-form-update"  class="btn btn-primary">
         </div> 

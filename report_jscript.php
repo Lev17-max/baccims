@@ -37,11 +37,14 @@
                 borderColor: "rgb(0 123 255)",
                 data: [
                     <?php
-
-                    foreach ($volume as $key => $value) {
+                    if(!empty($volume)){
+                         foreach ($volume as $key => $value) {
                         $voldata[] = '"' . $value . '"';
                     }
                     echo implode(',', $voldata);
+                    }
+
+                   
 
                     ?>
 
@@ -94,11 +97,22 @@
                 data: [
 
                     <?php
+                   
+                     foreach ($arr as $key => $value) {
+                         if($value[1] != 0){
+                              $total[] = '"' . ($value[2] / $value[1]) * 100 . '"';
+                         }
+                        
+                            
 
-                    foreach ($arr as $key => $value) {
-                        $total[] = '"' . ($value[2] / $value[1]) * 100 . '"';
+                       
                     }
-                    echo implode(',', $total);
+                    if(isset($total)){
+                         echo implode(',', $total);
+                    }
+                   
+                    
+                  
                     ?>
 
                 ],
