@@ -20,10 +20,18 @@ $query->bindParam(':id', $id);
 $query->execute();
 $disp = $query->fetchAll();
 
+$qry = $connect -> prepare('Select * from `user_logs` where `USER_ID` = ?');
+$qry2 = $connect -> prepare('Select * from `user_details` where ID = ?');
 
 
 $counts = 0;
 foreach ($disp as $row) {
+
+    $qry -> bindParam(1, $row['USER_DETAILS_ID']);
+    $qry -> execute();
+    $qdata = $qry->fetchAll();
+
+
     $counts += 1;
     $str = ucfirst(strtolower($row['FIRST_NAME'])) . ' ' . substr(ucfirst(strtolower($row['MIDDLE_NAME'])), 0, 1) . ' ' . ucfirst(strtolower($row['LAST_NAME']));
 
@@ -75,17 +83,48 @@ foreach ($disp as $row) {
     if ($accs == 3) {
         echo '
             <tr>
-                <td>
+                <td class="font-weight-bold" >
                     ' . $counts . '
                     <input type="hidden" class="id-hidden d-none" value="' . $row['ID'] . '" >
                 </td>
-                <td>
+                <td class="font-weight-bold" >
                     <a>
                        ' . $str . '
                     </a>
-                    <br/>
+                    ';  
+                    
+                     
+                    foreach ($qdata as $keys) {
+
+                        $qry2 -> bindParam(1, $keys['USER_DETAILS_ID']);
+                        $qry2 -> execute();
+                        $qrydata = $qry2->fetchAll();
+    
+                        foreach ($qrydata as $value) {
+    
+                            echo '<br><small class="text-muted m-0 pt-0" style="
+                                    font-size: 10px;
+                                " disabled>';
+                            if ($keys['STATUS'] == 0) {
+                                echo 'Marked as  ' . $status . ' by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            } else if ($keys['STATUS'] == 1) {
+                                echo 'Marked as  ' . $status . ' by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            } else if ($keys['STATUS'] == 2) {
+                                echo '<span class="badge badge-secondary"><i class="fas fa-pen"></i> User Type Changed </span>  by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            }else if ($keys['STATUS'] == 3) {
+                                echo  '<span class="badge badge-success"><i class="fas fa-check"></i> Registration Approved </span> by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            }else if ($keys['STATUS'] == 4) {
+                                echo ucfirst(strtolower($value['LAST_NAME'])) . ' <span class="badge badge-warning"><i class="fas fa-spinner fa-spin"></i> requested another id </span>  <br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            }
+    
+                            echo '</small></td>';
+                        }
+                    }
+                  
+
+        echo '
                 </td>
-                <td>
+                <td class="font-weight-bold" >
                     ' . $lvls . '
                 </td>
                 <td >
@@ -101,21 +140,53 @@ foreach ($disp as $row) {
     } else {
         echo '
             <tr>
-                <td>
+                <td class="font-weight-bold" >
                     ' . $counts . '
                 </td>
-                <td>
+                <td class="font-weight-bold" >
                     <a>
-                       ' . $str . '
+                       ' . $str ;
+                        
+                     
+                    foreach ($qdata as $keys) {
+
+                        $qry2 -> bindParam(1, $keys['USER_DETAILS_ID']);
+                        $qry2 -> execute();
+                        $qrydata = $qry2->fetchAll();
+    
+                        foreach ($qrydata as $value) {
+    
+                            echo '<br><small class="text-muted m-0 pt-0" style="
+                                    font-size: 10px;
+                                " disabled>';
+                            if ($keys['STATUS'] == 0) {
+                                echo 'Marked as  ' . $status . ' by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            } else if ($keys['STATUS'] == 1) {
+                                echo 'Marked as  ' . $status . ' by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            } else if ($keys['STATUS'] == 2) {
+                                echo '<span class="badge badge-secondary"></i> User Type Changed </span>  by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            }else if ($keys['STATUS'] == 3) {
+                                echo  '<span class="badge badge-success"><i class="fas fa-check"></i> Registration Approved </span> by '.ucfirst(strtolower($value['LAST_NAME'])) .'<br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            }else if ($keys['STATUS'] == 4) {
+                                echo ucfirst(strtolower($value['LAST_NAME'])) . ' <span class="badge badge-warning"><i class="fas fa-spinner fa-spin"></i> requested another id </span>  <br> on ' . date('F d, Y g:i a', strtotime($keys['DATETIME_EDITED']));
+                            }
+    
+                            echo '</small></td>';
+                        }
+                    }
+                  
+
+
+                echo '
                     </a>
                     <br/>
                 </td>
-                <td>
+                <td class="font-weight-bold" >
                     ' . $lvls . '
 
 
                 </td>
-                <td>
+                <td class="font-weight-bold" >
                     <div class="card m-0">
                         <div class="card-body p-0" data-toggle="lightbox" href="' . $row['FRONT_ID'] . '" data-gallery="' . $str . '-gallery" data-type="image" >
                             <center> <img width="80" height="80" src="' . $row['FRONT_ID'] . '"> </center>
@@ -123,7 +194,7 @@ foreach ($disp as $row) {
                     </div>
 
                 </td>
-                <td>
+                <td class="font-weight-bold" >
 
                     <div class="card m-0">
                         <div class="card-body p-0" data-toggle="lightbox" href="' . $row['BACK_ID'] . '" data-gallery="' . $str . '-gallery" data-type="image" >
@@ -135,7 +206,7 @@ foreach ($disp as $row) {
                 <td >
                     ' . $status . '
                 </td>
-                <td>
+                <td class="font-weight-bold" >
                     ' . $verified . '
                 </td>
                 <td class="project-actions text-right">

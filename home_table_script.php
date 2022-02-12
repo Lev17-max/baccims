@@ -36,14 +36,17 @@
                 var html_stats = '';
                 var html_choice = '';
                 var html_choice_frag = '';
+                var choices = 0;
 
 
                 if (stats == 0) {
+                    choices = 1;
                     html_stats = '      <a class="btn btn-app bg-danger archive"> ' +
                         '          <i class="fas fa-trash"></i>        ' +
                         '          Archive                             ' +
                         '      </a>                                    ';
                 } else {
+                    choices = 0;
                     html_stats = '      <a class="btn btn-app bg-success archive"> ' +
                         '          <i class="fas fa-check"></i>        ' +
                         '          Activate                            ' +
@@ -115,7 +118,6 @@
                 $('.archive').click(function() {
 
 
-
                     Swal.fire({
                         title: "Continue ?",
                         icon: 'warning',
@@ -136,36 +138,54 @@
                                 success: function(response) {
 
                                     if (response == 1) {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            text: 'Updated Successfully!',
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>';
-                                                if (session == 1) {
-                                                    $('#tbod').load('show_police_table.php', {
-                                                        id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                echo $_SESSION['USER_ID'];
-                                                            } ?>,
-                                                        accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>
-                                                    });
-                                                } else {
-                                                    $('#tbod').load('show_admin_table.php', {
-                                                        id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                echo $_SESSION['USER_ID'];
-                                                            } ?>,
-                                                        accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>
-                                                    });
-                                                }
 
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "log-user-status.php",
+                                            data: {
+                                                userid: btndata,
+                                                date: "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>" ,
+                                                status : choices,
+                                                editorid: <?php echo $_SESSION['USER_ID']; ?>
+                                            },
+                                            success: function (ans) {
+                                                if(ans == 204){
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        text: 'Updated Successfully!',
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                            } ?>';
+                                                            if (session == 1) {
+                                                                $('#tbod').load('show_police_table.php', {
+                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                            echo $_SESSION['USER_ID'];
+                                                                        } ?>,
+                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                            } ?>
+                                                                });
+                                                            } else {
+                                                                $('#tbod').load('show_admin_table.php', {
+                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                            echo $_SESSION['USER_ID'];
+                                                                        } ?>,
+                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                            } ?>
+                                                                });
+                                                            }
+
+                                                        }
+                                                    });
+
+                                                }
+                                                
                                             }
                                         });
+
                                     } else {
                                         Swal.fire({
                                             icon: 'error',
@@ -233,35 +253,59 @@
                                             success: function(response) {
                                             
                                                 if (response == 1) {
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        text: 'Updated Successfully!',
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                                echo $_SESSION['ACCESS_LEVEL'];
-                                                                            } ?>';
-                                                            if (session == 1) {
-                                                                $('#tbod').load('show_police_table.php', {
-                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                            echo $_SESSION['USER_ID'];
-                                                                        } ?>,
-                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                                echo $_SESSION['ACCESS_LEVEL'];
-                                                                            } ?>
-                                                                });
-                                                            } else {
-                                                                $('#tbod').load('show_admin_table.php', {
-                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                            echo $_SESSION['USER_ID'];
-                                                                        } ?>,
-                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                                echo $_SESSION['ACCESS_LEVEL'];
-                                                                            } ?>
-                                                                });
+
+
+                                                    $.ajax({
+                                                            type: "POST",
+                                                            url: "log-user-status.php",
+                                                            data: {
+                                                                userid: btndata,
+                                                                date: "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>" ,
+                                                                status : 2,
+                                                                editorid: <?php echo $_SESSION['USER_ID']; ?>
+                                                            },
+                                                            success: function (ans) {
+                                                                if(ans == 204){
+
+                                                                    Swal.fire({
+                                                                        icon: 'success',
+                                                                        text: 'Updated Successfully!',
+                                                                    }).then((result) => {
+                                                                        if (result.isConfirmed) {
+                                                                            var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                                            } ?>';
+                                                                            if (session == 1) {
+                                                                                $('#tbod').load('show_police_table.php', {
+                                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                                            echo $_SESSION['USER_ID'];
+                                                                                        } ?>,
+                                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                                            } ?>
+                                                                                });
+                                                                            } else {
+                                                                                $('#tbod').load('show_admin_table.php', {
+                                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                                            echo $_SESSION['USER_ID'];
+                                                                                        } ?>,
+                                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                                            } ?>
+                                                                                });
+                                                                            }
+                                                                        }
+                                                                    });
+
+
+                                                                }
                                                             }
-                                                        }
-                                                    });
+                                                        });
+
+
+
+
+                                                
                                                 } else {
                                                     Swal.fire({
                                                         icon: 'error',
@@ -313,47 +357,67 @@
                                 success: function(response) {
 
                                     if (response == 1) {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            text: 'Updated Successfully!',
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "send-sms-via-api.php",
-                                                    data: {
-                                                        msg : "Your Registration is approved. You can now login in baccims.co",
-                                                        id : btndata,
 
-                                                    },
-                                                    success: function (response) {
-                                                        
-                                                    }
-                                                });
-                                                var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>';
 
-                                                if (session == 1) {
-                                                    $('#tbod').load('show_police_table.php', {
-                                                        id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                echo $_SESSION['USER_ID'];
-                                                            } ?>
-                                                    });
+                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "log-user-status.php",
+                                                            data: {
+                                                                userid: btndata,
+                                                                date: "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>" ,
+                                                                status : 3,
+                                                                editorid: <?php echo $_SESSION['USER_ID']; ?>
+                                                            },
+                                                            success: function (ans) {
+                                                                if(ans == 204){
 
-                                                } else {
-                                                    $('#tbod').load('show_admin_table.php', {
-                                                        id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                echo $_SESSION['USER_ID'];
-                                                            } ?>,
-                                                        accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>
-                                                    });
-                                                }
+                                                                    Swal.fire({
+                                                                                icon: 'success',
+                                                                                text: 'Updated Successfully!',
+                                                                            }).then((result) => {
+                                                                                if (result.isConfirmed) {
+                                                                                    $.ajax({
+                                                                                        type: "POST",
+                                                                                        url: "send-sms-via-api.php",
+                                                                                        data: {
+                                                                                            msg : "Your Registration is approved. You can now login in baccims.co",
+                                                                                            id : btndata,
 
-                                            }
-                                        });
+                                                                                        },
+                                                                                        success: function (response) {
+                                                                                            
+                                                                                        }
+                                                                                    });
+                                                                                    var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                                        echo $_SESSION['ACCESS_LEVEL'];
+                                                                                                    } ?>';
+
+                                                                                    if (session == 1) {
+                                                                                        $('#tbod').load('show_police_table.php', {
+                                                                                            id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                                                    echo $_SESSION['USER_ID'];
+                                                                                                } ?>
+                                                                                        });
+
+                                                                                    } else {
+                                                                                        $('#tbod').load('show_admin_table.php', {
+                                                                                            id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                                                    echo $_SESSION['USER_ID'];
+                                                                                                } ?>,
+                                                                                            accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                                        echo $_SESSION['ACCESS_LEVEL'];
+                                                                                                    } ?>
+                                                                                        });
+                                                                                    }
+
+                                                                                }
+                                                                            });
+
+
+                                                                }
+                                                            }
+                                                        });
+                                      
                                     } else {
                                         Swal.fire({
                                             icon: 'error',
@@ -375,6 +439,7 @@
                 });
                 $('.request').click(function(e) {
 
+
                     Swal.fire({
                         title: "Request Another ID?",
                         icon: 'warning',
@@ -395,51 +460,67 @@
                                 cache: false,
                                 success: function(response) {
                                     if (response == 1) {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            text: 'Updated Successfully!',
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
 
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "send-sms-via-api.php",
-                                                    data: {
-                                                        msg : "Your Registration is Declined. Please Resubmit Clear ID in baccims.co",
-                                                        id : btndata,
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "log-user-status.php",
+                                            data: {
+                                                userid: btndata,
+                                                date: "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>" ,
+                                                status : 4,
+                                                editorid: <?php echo $_SESSION['USER_ID']; ?>
+                                            },
+                                            success: function (ans) {
+                                                if(ans == 204){
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        text: 'Updated Successfully!',
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
 
-                                                    },
-                                                    success: function (response) {
-                                                        
-                                                    }
-                                                });
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: "send-sms-via-api.php",
+                                                                data: {
+                                                                    msg : "Your Registration is Declined. Please Resubmit Clear ID in baccims.co",
+                                                                    id : btndata,
+
+                                                                },
+                                                                success: function (response) {
+                                                                    
+                                                                }
+                                                            });
 
 
-                                                var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>';
-                                                if (session == 1) {
-                                                    $('#tbod').load('show_police_table.php', {
-                                                        id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                echo $_SESSION['USER_ID'];
-                                                            } ?>,
-                                                        accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>
-                                                    });
-                                                } else {
-                                                    $('#tbod').load('show_admin_table.php', {
-                                                        id: <?php if (isset($_SESSION['USER_ID'])) {
-                                                                echo $_SESSION['USER_ID'];
-                                                            } ?>,
-                                                        accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
-                                                                    echo $_SESSION['ACCESS_LEVEL'];
-                                                                } ?>
+                                                            var session = '<?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                            } ?>';
+                                                            if (session == 1) {
+                                                                $('#tbod').load('show_police_table.php', {
+                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                            echo $_SESSION['USER_ID'];
+                                                                        } ?>,
+                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                            } ?>
+                                                                });
+                                                            } else {
+                                                                $('#tbod').load('show_admin_table.php', {
+                                                                    id: <?php if (isset($_SESSION['USER_ID'])) {
+                                                                            echo $_SESSION['USER_ID'];
+                                                                        } ?>,
+                                                                    accs: <?php if (isset($_SESSION['ACCESS_LEVEL'])) {
+                                                                                echo $_SESSION['ACCESS_LEVEL'];
+                                                                            } ?>
+                                                                });
+                                                            }
+
+                                                        }
                                                     });
                                                 }
-
                                             }
                                         });
+                                      
                                     } else {
                                         Swal.fire({
                                             icon: 'error',

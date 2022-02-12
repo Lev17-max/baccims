@@ -104,14 +104,10 @@
                                                         text: 'Updated Successfully!',
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
-                                                                $('#tbodcrimelist').load('show_table_crime.php',{
-                                                                    usid : <?php echo $_SESSION['USER_ID']; ?>
-                                                                });
+                                                                $('#tbodcrimelist').load('show_table_crime.php');
                                                         }else{
                                                 
-                                                            $('#tbodcrimelist').load('show_table_crime.php',{
-                                                                    usid : <?php echo $_SESSION['USER_ID']; ?>
-                                                                });
+                                                            $('#tbodcrimelist').load('show_table_crime.php');
                                                         }
                                                     });
                                              }else{
@@ -126,12 +122,6 @@
 
                                 }
                             });
-
-
-
-
-
-
 
                         }
                     });
