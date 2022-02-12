@@ -263,7 +263,7 @@
                     <thead>
                         <tr>
           
-                            <th>
+                            <th width="20%">
                                 BLOTTER ENTRY #
                             </th>
                             <th>

@@ -400,7 +400,26 @@
                     closeOnConfirm: false
                 }).then((result) => {
                         if (result.isConfirmed) {
-                           form.submit();
+                            $.ajax({
+                                type: "POST",
+                                url: "log-incident-status.php",
+                                data: {
+                                    blotnum : $('#blot-num-up').val(),
+                                    date : "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>",
+                                    status: 3,
+                                    user:  <?php echo $_SESSION['USER_ID']; ?>
+                                },
+                                success: function (ans) {
+                                    if(ans == 204){
+                                    form.submit();
+                                    }else{
+                                    
+                                    }
+            
+                                    
+                                }
+                                     });
+                     
                         }
                 });    
        });

@@ -3,6 +3,7 @@
 
         // $('#updateIncident').modal('show');
         // // $('.add-victim').trigger('click');
+       var editor_id = <?php echo $_SESSION['USER_ID'] ?>;
 
         $.ajax({
             type: "POST",
@@ -15,9 +16,6 @@
                 let arr = JSON.parse(response);
                 let status = arr[0]['STATUS'];
                 let blots = arr[0]['BLOTTER_ENTRY_NUMBER'];
-
-
-
 
                 var formatfirst = '<div class="card btn-group">                           ' +
                     '  <div class="card-body">                    ' +
@@ -61,12 +59,12 @@
 
                 $('.crime-solved').click(function(e) {
                     let choice_status;
+
                     if (status == 0) {
                         choice_status = 1;
                     } else {
                         choice_status = 0;
                     }
-
                     Swal.fire({
                         title: "Confirm Choice?",
                         icon: "warning",
@@ -89,18 +87,41 @@
                                                  
 
                                     if (data == 204) {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            text: 'Updated Successfully!',
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-        
-                                                    $('#tbodcrimelist').load('show_table_crime.php');
-                                            }else{
-                                      
-                                                $('#tbodcrimelist').load('show_table_crime.php');
-                                            }
-                                        });
+
+                                     $.ajax({
+                                         type: "POST",
+                                         url: "log-incident-status.php",
+                                         data: {
+                                             blotnum : blots,
+                                             date : "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>",
+                                             status: choice_status,
+                                             user: editor_id
+                                         },
+                                         success: function (ans) {
+                                             if(ans == 204){
+                                                Swal.fire({
+                                                        icon: 'success',
+                                                        text: 'Updated Successfully!',
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                                $('#tbodcrimelist').load('show_table_crime.php',{
+                                                                    usid : <?php echo $_SESSION['USER_ID']; ?>
+                                                                });
+                                                        }else{
+                                                
+                                                            $('#tbodcrimelist').load('show_table_crime.php',{
+                                                                    usid : <?php echo $_SESSION['USER_ID']; ?>
+                                                                });
+                                                        }
+                                                    });
+                                             }else{
+                                                 console.log(ans);
+                                             }
+                        
+                                             
+                                         }
+                                     });
+                                       
                                     }
 
                                 }
@@ -132,7 +153,6 @@
                         closeOnConfirm: false
                     }).then((result) => {
                         if (result.isConfirmed) {
-
 
                             $('#message').addClass('d-none');
                             $('#info').addClass('d-none');

@@ -12,6 +12,8 @@ include 'connection.php';
     LEFT JOIN purok pr ON p.PUROK_ID= pr.ID
     LEFT JOIN barangay b  ON p.BARANGAY_ID = b.ID
 ");
+$qry = $connect -> prepare('Select * from `record_logs` where BLOTTER_ENTRY_NUMBER = ?');
+$qry2 = $connect -> prepare('Select * from `user_details` where ID = ?');
 
 
 $listallincident->execute();
