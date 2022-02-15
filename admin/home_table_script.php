@@ -8,6 +8,7 @@
 
 
     $(document).ready(function() {
+       
 
 
 
@@ -209,28 +210,94 @@
 
                 $('.edit').click(function() {
 
-                    var selection;
-                    if (accs == 1) {
-                        selection = '<div class="input-group mb-3"><select id="type" class="custom-select rounded-0" id="exampleSelectRounded0" required><option value="0" selected>Resident User</option><option value="1" selected>Police</option><option value="2">Barangay Official</option></select><div class="input-group-append"><div class="input-group-text"><span class="fas fa-exclamation-circle"></span></div></div></div>';
-                    } else if (accs == 2) {
-                        selection = '<div class="input-group mb-3"><select id="type" class="custom-select rounded-0" id="exampleSelectRounded0" required><option value="0" >Resident User</option><option value="1">Police</option><option value="2" selected>Barangay Official</option></select><div class="input-group-append"><div class="input-group-text"><span class="fas fa-exclamation-circle"></span></div></div></div>';
-                    } else {
-                        selection = '<div class="input-group mb-3"><select id="type" class="custom-select rounded-0" id="exampleSelectRounded0" required><option value="0" selected>Resident User</option><option value="1">Police</option><option value="2">Barangay Official</option></select><div class="input-group-append"><div class="input-group-text"><span class="fas fa-exclamation-circle"></span></div></div></div>';
-                    }
+                    var selection,list;
+                  
 
+                    if (accs == 1) {  
+                        list = '<div id="police_list_edit" class="">'+ 
+                                    '<label> Police Rank:</label><br>'+
+                                    '<div class="input-group mb-3">'+
+                                        '<select id="ranks" name="ranks" class="custom-select rounded-0" id="exampleSelectRounded0" required>'+
+                                            '<option disabled selected>Police Rank</option>'+
+                                        '<?php
+                                                include 'list_police.php';
+                                        ?>'+
+                                        '</select>'+
+                                        '<div class="input-group-append">'+
+                                            '<div class="input-group-text">'+
+                                                '<span class="fas fa-exclamation-circle"></span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>';
+                        selection = '<div class="input-group mb-3"><select id="edittype" class="custom-select rounded-0" required><option value="0" >Resident User</option><option value="1" selected>Police</option><option value="2">Barangay Official</option></select><div class="input-group-append"><div class="input-group-text"><span class="fas fa-exclamation-circle"></span></div></div></div> ';
+                    }  if (accs == 2) {
+                        list = '<div id="police_list_edit" class="d-none">'+
+                                    '<label> Police Rank:</label><br>'+
+                                    '<div class="input-group mb-3">'+
+                                        '<select id="ranks" name="ranks" class="custom-select rounded-0" id="exampleSelectRounded0" required>'+
+                                            '<option disabled selected>Police Rank</option>'+
+                                        '<?php
+                                                include 'list_police.php';
+                                        ?>'+
+                                        '</select>'+
+                                        '<div class="input-group-append">'+
+                                            '<div class="input-group-text">'+
+                                                '<span class="fas fa-exclamation-circle"></span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>';
+                        selection = '<div class="input-group mb-3"><select id="edittype" class="custom-select rounded-0" required><option value="0" >Resident User</option><option value="1">Police</option><option value="2" selected>Barangay Official</option></select><div class="input-group-append"><div class="input-group-text"><span class="fas fa-exclamation-circle"></span></div></div></div>';
+                    }  if(accs == 0){
+                        list = '<div id="police_list_edit" class="d-none">'+
+                                    '<label> Police Rank:</label><br>'+
+                                    '<div class="input-group mb-3">'+
+                                        '<select id="ranks" name="ranks" class="custom-select rounded-0" id="exampleSelectRounded0" required>'+
+                                            '<option disabled selected>Police Rank</option>'+
+                                        '<?php
+                                                include 'list_police.php';
+                                        ?>'+
+                                        '</select>'+
+                                        '<div class="input-group-append">'+
+                                            '<div class="input-group-text">'+
+                                                '<span class="fas fa-exclamation-circle"></span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                 '</div>';
+                        selection = '<div class="input-group mb-3"><select id="edittype" class="custom-select rounded-0" required><option value="0" selected>Resident User</option><option value="1">Police</option><option value="2">Barangay Official</option></select><div class="input-group-append"><div class="input-group-text"><span class="fas fa-exclamation-circle"></span></div></div></div>';
+                    }
+ 
+                 
 
                     Swal.fire({
                         title: 'EDIT ' + name,
-                        html: selection,
+                        html: selection+list,
                         focusConfirm: false,
                         customClass: {
                             container: 'overflow-hidden',
 
                         },
                         showCancelButton: true,
+                        didOpen: () => {
+                             $('#edittype').change(function (e) { 
+                                        if($(this).val() == 1){
+                                        
+                                        $('#police_list_edit').removeClass('d-none');
+                                      
+                                       }else{
+                                        $('#police_list_edit').addClass('d-none');
+                                        $('#ranks').val('');
+                                       }
+                             });                        
+                        },
 
                         preConfirm: (value) => {
-                            var access = document.getElementById('type').value;
+                            var access = document.getElementById('edittype').value;
+                            var rank = document.getElementById('ranks').value;
+                        
+                        
                             if (access) {
 
                                 Swal.fire({
@@ -241,20 +308,20 @@
                                     confirmButtonText: "Confirm!",
                                     closeOnConfirm: false
                                 }).then((result) => {
+                             
                                     if (result.isConfirmed) {
                                         $.ajax({
                                             url: "update_user.php",
                                             type: "post",
                                             data: {
                                                 id: btndata,
-                                                access_level: access
+                                                access_level: access,
+                                                ranks: rank
                                             },
                                             cache: false,
                                             success: function(response) {
-                                            
+
                                                 if (response == 1) {
-
-
                                                     $.ajax({
                                                             type: "POST",
                                                             url: "log-user-status.php",
@@ -313,6 +380,8 @@
                                                     });
 
                                                 }
+  
+                                             
                                             },
                                             error: function(jqXHR, textStatus, errorThrown) {
                                                 alert(textStatus, errorThrown);

@@ -125,7 +125,7 @@ date_default_timezone_set('Asia/Manila'); ?>
                                                     <div class="input-group mb-3">
                                                         <select id="usertype" name="type" class="custom-select rounded-0" id="exampleSelectRounded0" required>
                                                             <option value="0" selected>Resident User</option>
-                                                            <option value="1" selected>Police</option>
+                                                            <option value="1" >Police</option>
                                                             <option value="2">Barangay Official</option>
                                                         </select>
                                                         <div class="input-group-append">
@@ -133,6 +133,23 @@ date_default_timezone_set('Asia/Manila'); ?>
                                                                 <span class="fas fa-exclamation-circle"></span>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div id="police_list" class="d-none">
+                                                    <label> Police Rank:</label><br>
+                                                    <div class="input-group mb-3">
+                                                        <select id="rank" name="rank" class="custom-select rounded-0" id="exampleSelectRounded0" required>
+                                                            <option value="" disabled selected>Police Rank</option>
+                                                        <?php
+                                                             include 'list_police.php';
+                                                        ?>
+                                                           
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text">
+                                                                <span class="fas fa-exclamation-circle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     </div>
 
                                                 </div>
@@ -240,6 +257,15 @@ date_default_timezone_set('Asia/Manila'); ?>
             include 'end.php'; ?>
             <script>
                 $(document).ready(function () {
+
+                    $('#usertype').change(function (e) { 
+                        if($(this).val()==1){
+                            $('#police_list').removeClass('d-none');
+                        }else{
+                            $('#police_list').addClass('d-none');
+                        }
+                    });
+
                     $('#username-add').keyup(function (e) { 
 
                                     if(this.value.length > 4){
