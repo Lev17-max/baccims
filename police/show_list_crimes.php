@@ -4,6 +4,7 @@
 include 'connection.php';
 
     $listallincident = $connect->prepare("SELECT *,i.BLOTTER_ENTRY_NUMBER AS BLOT,
+                                                i.STATUS AS INCIDENT_STATUS,
                                                 inc.NAME as INCIDENT,
                                                 ia.FIRST_NAME AS COMPLAINANT_F,
                                                 ia.FAMILY_NAME AS COMPLAINANT_L,
@@ -23,7 +24,7 @@ include 'connection.php';
                                             LEFT JOIN police_rank prnk ON pol.POLICE_RANK_ID = prnk.ID
                                             LEFT JOIN user_details ud ON pol.USER_DETAILS_ID = ud.ID;
                                         ");
-$qry = $connect -> prepare('Select * from `record_logs` where BLOTTER_ENTRY_NUMBER = ?');
+$qry = $connect -> prepare('Select * from `record_logs` where BLOTTER_ENTRY_NUMBER = ? ORDER BY DATETIME_EDITED DESC LIMIT 1 ');
 $qry2 = $connect -> prepare('Select * from `user_details` where ID = ?');
 
 

@@ -35,7 +35,7 @@
                  include 'help.php';
                  include 'reports.php';
                  include 'incident_record_form.php';
-                //  include 'users.php';
+                 include 'logs.php';
                  include 'messages.php';
                  include 'map.php';
                  include 'contacts.php';

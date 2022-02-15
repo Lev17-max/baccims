@@ -103,6 +103,14 @@
               </p>
             </a>
            </li>
+           <li class="nav-item menu-close">
+            <a id="sidebar-logs" class="nav-link " role="button">
+              <i class="nav-icon fas fa-history"></i>
+              <p>
+              Logs
+              </p>
+            </a>
+           </li>
         </ul>
       </nav>
 

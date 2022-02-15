@@ -33,7 +33,7 @@ foreach ($allcrimedatas as $crimedatas) {
         }
     }
    
-    echo '     <td class="font-weight-bold"> ' .         strtoupper($crimedatas['INCIDENT']) .        '</td>';
+    echo '     <td class="font-weight-bold"> ' . strtoupper($crimedatas['INCIDENT']) .        '</td>';
     echo '     <td class="font-weight-bold"> ' . ucfirst(strtolower($crimedatas['COMPLAINANT_F'])) . ' ' . ucfirst(strtolower($crimedatas['COMPLAINANT_L'])) . '</td>';
     echo '     <td class="font-weight-bold"> '; 
     echo $crimedatas['ABBR']. '. ' . ucfirst(strtolower($crimedatas['INVESTIGATOR_F'])) . ' ' . ucfirst(strtolower($crimedatas['INVESTIGATOR_L']));
@@ -45,9 +45,9 @@ foreach ($allcrimedatas as $crimedatas) {
     echo $crimedatas['PHASE']. ' '. $crimedatas['PUROK'].' ' .$crimedatas['BARANGAY'];
     echo '     </td> ';
     echo '     <td class="font-weight-bold">';
-    if ($crimedatas['STATUS'] == 1) {
+    if ($crimedatas['INCIDENT_STATUS'] == 1) {
         echo   '<span class="badge badge-success"><i class="fas fa-check-circle"></i>Solved</span>';
-    } else if($crimedatas['STATUS'] == 0){
+    } else if($crimedatas['INCIDENT_STATUS'] == 0){
         echo  '<span class="badge badge-danger"><i class="fas fa-file"></i>Filed</span>';
     }
     echo '     </td>';

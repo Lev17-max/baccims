@@ -227,6 +227,22 @@
         $('#name2').text('Help');
 
     });
+    $('#sidebar-logs').click(function(e) {
+        $('#message').addClass('d-none');
+        $('#info').addClass('d-none');
+        // $('#reports').addClass('d-none');
+        $('#recordform').addClass('d-none');
+        $('#users').addClass('d-none');
+        $('#maps').addClass('d-none');
+        $('#reports').addClass('d-none');
+        $('#contacts').addClass('d-none');
+        $('#logs').removeClass('d-none');
+        $('#updaterecordform').addClass('d-none');
+        $('#help').addClass('d-none');
+        $('#name').text('Logs');
+        $('#name2').text('Logs');
+
+    });
 
     $(document).ready(function() {
 

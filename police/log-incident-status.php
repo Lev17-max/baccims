@@ -8,10 +8,8 @@ if(isset($_POST['blotnum']) && isset($_POST['date']) && isset($_POST['status']) 
    $status = $_POST['status'];
    $user = $_POST['user'];
 
-  $query = $connect -> prepare("INSERT IGNORE INTO `record_logs`(`BLOTTER_ENTRY_NUMBER`, `DATETIME_EDITED`, `STATUS`,`USER_DETAILS_ID`) 
-                                VALUES (:blot, :datet, :status ,:user) 
-                                ON DUPLICATE KEY 
-                                UPDATE `DATETIME_EDITED` = :datet, `STATUS` = :status , `USER_DETAILS_ID` = :user");
+  $query = $connect -> prepare("INSERT INTO `record_logs`(`BLOTTER_ENTRY_NUMBER`, `DATETIME_EDITED`, `STATUS`,`USER_DETAILS_ID`) 
+                                VALUES (:blot, :datet, :status ,:user)");
   $query -> bindParam(':blot' , $blot);
   $query -> bindParam(':datet', $date);
   $query -> bindParam(':status', $status);
