@@ -1,0 +1,149 @@
+
+////////////////////////////
+
+FINAL TITLE: BACCIMS
+
+////////////////////////////////
+
+login - register here
+done!
+	Forgot Password?
+done!
+
+
+/////////////////////////////////
+
+Register : label(all)
+done!
+	   MIGHT (realtime capture id)
+done!
+	   remove agreement cistico title(i confirm the info given above is true)
+done!	   
+/////////////////////////////////
+
+Database - Uppercase first letter
+done!
+
+/////////////////////////////////
+
+lobby- sign in as a different user.
+done!
+	footer - change title
+	done!
+
+/////////////////////////////////
+
+info board - arrow
+done!
+
+//////////////////////////
+
+
+user - sortuser that needs approval first
+	done!
+       create id (use template)
+(pending)
+
+
+//////////////////////
+
+
+user crime map - display dominancrime only
+(pending)
+	         limited data only
+done!
+		 
+
+
+//////////////////////
+
+
+barangay emergy message (broadcast message) - panel might change (sms notification)
+done!
+search keyword
+(pending)
+
+
+
+
+
+///////////////////////
+
+
+police******
+
+sidebar must be police 55
+DONE!
+plus for multiple suspect
+(pending)
+
+min and maximum lat and long
+done!
+
+
+
+
+
+///////////////////////////
+
+new
+
+//////////////////////////
+s
+need confirmation
+
+//////////////////////////
+
+Request Message
+TITLE
+
+
+//////////////////////////
+
+
+crime record form 
+-add reporting police
+
+
+/////////////////////////////
+
+
+usaron ang register form
+-officer id #
+-police id
+
+
+///////////////////////////
+
+
+
+crime map
+
+crime details sa dalum
+from to by months and days
+crime rate.
+
+
+
+///////////////////
+reports adjust mobile ui design
+
+
+
+
+
+
+SELECT distinct BLOTTER_ENTRY_NUMBER,DATETIME_FILED FROM `incident`  
+where year(DATETIME_FILED) BETWEEN 2017 AND 2021;
+
+
+
+
+
+
+
+
+
+
+
+

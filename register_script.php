@@ -10,14 +10,13 @@ $birth = $_POST['birthday'];
 $phone = $_POST['phone'];
 $gender = $_POST['gender'];
 $terms = $_POST['terms'];
-$target_dir = "uploads/";
+$target_dir = "admin/uploads/";
 $target_fileF = $target_dir . basename($_FILES["frontID"]["name"]);
 $target_fileB = $target_dir . basename($_FILES["backID"]["name"]);
 $uploadOk = 1;
 $id = '';
 
-
-$date = DateTime::createFromFormat('d/m/Y', $birth);
+$date = DateTime::createFromFormat('d/m/Y', $birth); 
 $birthdate = $date->format('Y-m-d');
 
 // Check file size
@@ -47,6 +46,8 @@ if (
                 $newfilenameB = $target_dir . ucfirst(strtolower($lastname)) . '_' . ucfirst(strtolower($firstname)) . '_back_id' . '.' . end($tempB);
                 rename($target_fileF, $newfilenameF);
                 rename($target_fileB, $newfilenameB);
+                $f =  'uploads/'. ucfirst(strtolower($lastname)) . '_' . ucfirst(strtolower($firstname)) . '_front_id' . '.' . end($tempF);
+                $b =  'uploads/' . ucfirst(strtolower($lastname)) . '_' . ucfirst(strtolower($firstname)) . '_back_id' . '.' . end($tempB);
 
                 //send database
                 $query1 = $connect->prepare("INSERT INTO `user_details` (`FIRST_NAME`, `MIDDLE_NAME`, `LAST_NAME`, `BIRTHDATE`, `PHONE`, `GENDER`,`ADDRESS`, `FRONT_ID`, `BACK_ID`) VALUES(:firstname,:middlename,:lastname,:birth,:phone,:gender,:address,:fID,:bID)");
@@ -57,8 +58,8 @@ if (
                 $query1->bindParam(':gender', $gender);
                 $query1->bindParam(':address', $address);
                 $query1->bindParam(':phone', $phone);
-                $query1->bindParam(':fID', $newfilenameF);
-                $query1->bindParam(':bID', $newfilenameB);
+                $query1->bindParam(':fID', $f);
+                $query1->bindParam(':bID', $b);
                 $query1->execute();
                 $id = $connect->lastInsertId();
 

@@ -110,7 +110,7 @@
                   </div>
                   <label>Mobile:</label><br>
                   <div class="input-group " style="position: relative;">
-                    <input type="tel" id="phone" class="form-control" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="" required>
+                    <input type="tel" id="phone" class="form-control phone" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="" required>
                     <span id="countrycode">
                       (+63) </span>
                     <div id="phone-icon" class="input-group-append">

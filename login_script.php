@@ -90,15 +90,19 @@ if ($countcredentials <= 0) {
 			$_SESSION['ACCESS_LEVEL'] = $row['ACCESS_LEVEL'];
 		    if ($row['ACCESS_LEVEL'] == 0) {
 				if ($row['GENDER'] == 'Male') {
+
 					$_SESSION['ICON'] = 'dist/img/user_level/user.png';
 				} else {
 					$_SESSION['ICON'] = 'dist/img/user_level/user-fmale.png';
 				}
+				header("location:home.php");
 			}
 			if($row['ACCESS_LEVEL'] == 1){
+				header("location:police/home.php");
 				$_SESSION['ICON'] = 'dist/img/user_level/police.png';
 			}
 			if ($row['ACCESS_LEVEL'] == 2) {
+				header("location:admin/home.php");
 				if ($row['GENDER'] == 'Male') {
 					$_SESSION['ICON'] = 'dist/img/user_level/barangay.png';
 				} else {
@@ -106,10 +110,11 @@ if ($countcredentials <= 0) {
 				}
 			}
 			if ($row['ACCESS_LEVEL'] == 3) {
+				header("location:admin/home.php");
 
 				$_SESSION['ICON'] = 'dist/img/user_level/admin.png';
 			}
-			header("location:home.php");
+			
 		}
 	}
 }

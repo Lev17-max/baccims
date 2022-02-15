@@ -39,23 +39,23 @@
         }
         if ($data['ACCESS_LEVEL'] == 0) {
             if ($data['GENDER'] == 'Male') {
-                $icon= 'dist/img/user_level/user.png';
+                $icon= '../dist/img/user_level/user.png';
             } else {
-                $icon = 'dist/img/user_level/user-fmale';
+                $icon = '../dist/img/user_level/user-fmale';
             }
         }
         if($data['ACCESS_LEVEL'] == 1){
-            $icon = 'dist/img/user_level/police.png';
+            $icon = '../dist/img/user_level/police.png';
         }
         else if ($data['ACCESS_LEVEL'] == 2) {
             if ($data['GENDER'] == 'Male') {
-                $icon = 'dist/img/user_level/barangay.png';
+                $icon = '../dist/img/user_level/barangay.png';
             } else {
-                $icon = 'dist/img/user_level/fmale-barangay.png';
+                $icon = '../dist/img/user_level/fmale-barangay.png';
             }
         }
         else {
-            $icon= 'dist/img/user_level/admin.png';
+            $icon= '../dist/img/user_level/admin.png';
         }
         // time
         $str = ucfirst(strtolower($data['FIRST_NAME'])) . ' ' . substr(ucfirst(strtolower($data['MIDDLE_NAME'])), 0, 1) . ' ' . ucfirst(strtolower($data['LAST_NAME']));
@@ -108,7 +108,7 @@
                     if($i == 1){
                         echo '
                         <div class="card col-sm-6 ">
-                            <img data-height="600" data-max-width="600" class="img-fluid" src="' . $key . '"  href="' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
+                            <img data-height="600" data-max-width="600" class="img-fluid" src="../' . $key . '"  href="../' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
                         </div> 
                         ';
                         echo $start;
@@ -116,18 +116,18 @@
                         echo $end; 
                     }else if($i > 3){
                         echo '
-                        <img data-height="600" data-max-width="600" class="img-fluid d-none" src="' . $key . '"  href="' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
+                        <img data-height="600" data-max-width="600" class="img-fluid d-none" src="../' . $key . '"  href="../' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
                          ';  
                     }else{
                         echo '
-                        <img data-height="600" data-max-width="600" class="img-fluid" src="' . $key . '"  href="' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
+                        <img data-height="600" data-max-width="600" class="img-fluid" src="../' . $key . '"  href="../' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
                          ';
                     }
 
                 }else if($key != '' && count($image) - 1 == 1){
                     echo '
                         <div class="card col-sm-6 ">
-                            <img data-height="600" data-max-width="600" class="img-fluid" src="' . $key . '"  href="' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
+                            <img data-height="600" data-max-width="600" class="img-fluid" src="../' . $key . '"  href="../' . $key . '" data-toggle="lightbox" data-gallery="' . $str . date('F d, Y g:i a', strtotime($data['DATE'])) . '-gallery" data-type="image" >
                         </div> 
                         ';
                 }
