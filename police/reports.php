@@ -273,6 +273,9 @@
                                 COMPLAINANT
                             </th>
                             <th>
+                                INVESTIGATOR
+                            </th>
+                            <th>
                                 DATE FILED
                             </th>
                             <th>

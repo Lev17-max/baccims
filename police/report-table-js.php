@@ -181,8 +181,8 @@
                                      $('#date-happened-update').val(values[0]['DATETIME_HAPPEN']);
 
                                      $('.up-case-disp').val(values[0]['INSTRUCTION']);
-                                     $('.up-case-investigator').val(values[0]['INVESTIGATOR']);
-                                     $('.up-case-chief').val(values[0]['CHIEF']);
+                                     $('.up-case-investigator').val(values[0]['INVESTIGATOR']).change();
+                                     $('.up-case-chief').val(values[0]['CHIEF']).change();
 
 
 

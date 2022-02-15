@@ -33,8 +33,11 @@ foreach ($allcrimedatas as $crimedatas) {
         }
     }
    
-    echo '     <td class="font-weight-bold"> ' .          $crimedatas['NAME'] .        '</td>';
-    echo '     <td class="font-weight-bold"> ' . ucfirst(strtolower($crimedatas['11'])) . ' ' . ucfirst(strtolower($crimedatas['12'])) . '</td>';
+    echo '     <td class="font-weight-bold"> ' .         strtoupper($crimedatas['INCIDENT']) .        '</td>';
+    echo '     <td class="font-weight-bold"> ' . ucfirst(strtolower($crimedatas['COMPLAINANT_F'])) . ' ' . ucfirst(strtolower($crimedatas['COMPLAINANT_L'])) . '</td>';
+    echo '     <td class="font-weight-bold"> '; 
+    echo $crimedatas['ABBR']. '. ' . ucfirst(strtolower($crimedatas['INVESTIGATOR_F'])) . ' ' . ucfirst(strtolower($crimedatas['INVESTIGATOR_L']));
+    echo '</td>' ;
     echo '     <td class="font-weight-bold"> ';
     echo date("F j, Y, g:i a",strtotime($crimedatas['DATETIME_FILED']));
     echo '     </td> ';
@@ -48,6 +51,7 @@ foreach ($allcrimedatas as $crimedatas) {
         echo  '<span class="badge badge-danger"><i class="fas fa-file"></i>Filed</span>';
     }
     echo '     </td>';
+
     echo '     
            <td class="project-actions text-right font-weight-bold">
            <button class="btn btn-app bg-secondary record-option" onclick="submitReport(' . $crimedatas[0] . ')"  >

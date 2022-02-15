@@ -114,7 +114,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>OFFICE INSTRUCTION:</label>
                                     <div class="input-group mb-3">
@@ -123,20 +123,26 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>INVESTIGATOR-ON-CASE:</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control up-case-investigator" name="up-case-investigator" required>
+                                        <select style="width: 100%;" class="form-control select2 up-case-investigator" name="up-case-investigator" required>
+                                            <option selected disabled value> Select Investigator </option>
+                                        <?php include 'police_list.php'; ?>
+                                        </select>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                             <div class="form-group">
                                     <label> CHIEF OF STATION/OFFICE:</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control up-case-chief" name="up-case-chief" required>
+                                    <select style="width: 100%;" class="form-control select2 up-case-chief" name="up-case-chief" required>
+                                        <option selected disabled value> STATION CHIEF </option>
+                                        <?php include 'police_list.php'; ?>
+                                        </select>
                                     </div>
                                 </div>
 

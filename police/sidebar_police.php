@@ -20,7 +20,23 @@
                                         echo $_SESSION['USERNAME'];
                                       } ?></a>
           <a data-toggle="modal" role="button" data-target="#profile" class="small mt-0 pt-0">
-           Police
+           <?php
+
+            include 'connection.php';
+
+            $searchpol = $connect->prepare('SELECT * FROM police p JOIN police_rank prnk ON p.POLICE_RANK_ID = prnk.ID WHERE USER_DETAILS_ID = :id');
+            $searchpol ->bindParam(':id', $_SESSION['USER_ID']);
+            $searchpol->execute();
+            $data = $searchpol->fetchAll();
+
+            foreach ($data as $key) {
+              echo $key['NAME'];
+              # code...
+            }
+
+
+
+          ?>
                                         
                                         
          </a>
