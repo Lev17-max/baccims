@@ -20,7 +20,7 @@ $query->bindParam(':id', $id);
 $query->execute();
 $disp = $query->fetchAll();
 
-$qry = $connect -> prepare('Select * from `user_logs` where `USER_ID` = ?');
+$qry = $connect -> prepare('Select * from `user_logs` where `USER_ID` = ? ORDER BY DATETIME_EDITED DESC LIMIT 1;');
 $qry2 = $connect -> prepare('Select * from `user_details` where ID = ?');
 
 
@@ -57,25 +57,16 @@ foreach ($disp as $row) {
     }
     if ($row["STATUS"] == 0) {
         $status = '<span class="badge badge-success"><i class="fas fa-check"></i> active </span> ';
-        // $btn =  '<a id="btn" onclick="archive(' . $row['ID'] . ',\'' . ucfirst(strtolower($row['FIRST_NAME'])) . '\',' . $row['ACCESS_LEVEL'] . ',0)" class="btn btn-danger btn-sm" href="#">
-        //         <i class="fas fa-trash">
-        //         </i> <br>
-        //         Archive
-        //         </a>';
+     
     }else if ($row["STATUS"] == 2) {
         $status = '<span class="badge badge-info"><i class="fas fa-sync fa-spin"></i> Reseting Password</span> ';
-        // $btn =  '<a id="btn" onclick="archive(' . $row['ID'] . ',\'' . ucfirst(strtolower($row['FIRST_NAME'])) . '\',' . $row['ACCESS_LEVEL'] . ',0)" class="btn btn-danger btn-sm" href="#">
-        //         <i class="fas fa-trash">
-        //         </i> <br>
-        //         Archive
-        //         </a>';
+    
     } else {
         
         $status = '<span class="badge badge-danger"><i class="fas fa-ban"></i> archived </span>';
         $btn =  '<a id="btn" onclick="archive(' . $row['ID'] . ',\'' . ucfirst(strtolower($row['FIRST_NAME'])) . '\',' . $row['ACCESS_LEVEL'] . ',1)" class="btn btn-success btn-sm" href="#">
         <i class="fas fa-check-double">
         </i>
-        <br>
          Activate
         </a>';
     }
@@ -92,8 +83,7 @@ foreach ($disp as $row) {
                        ' . $str . '
                     </a>
                     ';  
-                    
-                     
+                        
                     foreach ($qdata as $keys) {
 
                         $qry2 -> bindParam(1, $keys['USER_DETAILS_ID']);

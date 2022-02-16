@@ -103,6 +103,7 @@ date_default_timezone_set('Asia/Manila'); ?>
                                             <!-- birthday and the rest -->
                                             <div class="row">
                                                 <div class="col-lg-12">
+                                                    <input type="hidden" class="d-none" name="admin_sender" value="<?php echo $_SESSION['USER_ID'];  ?>">
                                                     <label> Username:</label><br>
                                                     <div class="input-group mb-3">
                                                         <input type="text" id= "username-add" class="form-control" name="username" placeholder="Username" required>

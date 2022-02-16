@@ -30,6 +30,7 @@
             <!-- start of reports -->
             <?php 
             include 'help.php';
+            include 'logs.php';
                 include 'infoboard.php';
                   include 'users.php';
                   include 'messages.php';

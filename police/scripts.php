@@ -110,6 +110,7 @@
         $('#users').addClass('d-none');
         $('#reports').addClass('d-none');
         $('#help').addClass('d-none');
+         $('#logs').addClass('d-none');
         $('#maps').addClass('d-none');
         $('#name').text('Info Board');
         $('#contacts').addClass('d-none');
@@ -120,6 +121,7 @@
     $('#sidebar-map').click(function(e) {
         $('#info').addClass('d-none');
         // $('#reports').addClass('d-none');
+         $('#logs').addClass('d-none');
         $('#recordform').addClass('d-none');
         $('#message').addClass('d-none');
         $('#help').addClass('d-none');
@@ -140,6 +142,7 @@
         $('#updaterecordform').addClass('d-none');
         $('#help').addClass('d-none');
         $('#reports').addClass('d-none');
+         $('#logs').addClass('d-none');
         $('#maps').addClass('d-none');
         $('#name').text('Incident Record Form');
         $('#name2').text('Incident Record Form');
@@ -156,6 +159,7 @@
         $('#recordform').addClass('d-none');
         $('#users').addClass('d-none');
         $('#maps').addClass('d-none');
+         $('#logs').addClass('d-none');
         $('#updaterecordform').addClass('d-none');
         $('#name').text('Reports');
         $('#name2').text('Reports');
@@ -176,6 +180,7 @@
         $('#name').text('Alert Message');
         $('#name2').text('Alert Message');
         $('#contacts').addClass('d-none');
+         $('#logs').addClass('d-none');
         // $('#sidebar-info-board').addClass('d-none');
         // $('#sidebar-info-board').addClass('d-none');
         // $('#sidebar-info-board').addClass('d-none');
@@ -192,6 +197,7 @@
         $('#updaterecordform').addClass('d-none');
         $('#name').text('Users');
         $('#help').addClass('d-none');
+         $('#logs').addClass('d-none');
         $('#name2').text('Users');
         // $('#sidebar-info-board').addClass('d-none');
         // $('#sidebar-info-board').addClass('d-none');
@@ -207,6 +213,7 @@
         $('#reports').addClass('d-none');
         $('#contacts').removeClass('d-none');
         $('#updaterecordform').addClass('d-none');
+         $('#logs').addClass('d-none');
         $('#help').addClass('d-none');
         $('#name').text('About Us');
         $('#name2').text('About Us');
@@ -217,6 +224,7 @@
         $('#info').addClass('d-none');
         // $('#reports').addClass('d-none');
         $('#recordform').addClass('d-none');
+        $('#logs').addClass('d-none');
         $('#users').addClass('d-none');
         $('#maps').addClass('d-none');
         $('#reports').addClass('d-none');

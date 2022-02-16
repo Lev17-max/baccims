@@ -168,6 +168,7 @@
                                                                                 echo $_SESSION['ACCESS_LEVEL'];
                                                                             } ?>
                                                                 });
+                                                                $('#logstimeline').load('server_logs.php');
                                                             } else {
                                                                 $('#tbod').load('show_admin_table.php', {
                                                                     id: <?php if (isset($_SESSION['USER_ID'])) {
@@ -177,6 +178,7 @@
                                                                                 echo $_SESSION['ACCESS_LEVEL'];
                                                                             } ?>
                                                                 });
+                                                                $('#logstimeline').load('server_logs.php');
                                                             }
 
                                                         }
@@ -351,6 +353,7 @@
                                                                                                 echo $_SESSION['ACCESS_LEVEL'];
                                                                                             } ?>
                                                                                 });
+                                                                                $('#logstimeline').load('server_logs.php');
                                                                             } else {
                                                                                 $('#tbod').load('show_admin_table.php', {
                                                                                     id: <?php if (isset($_SESSION['USER_ID'])) {
@@ -360,6 +363,7 @@
                                                                                                 echo $_SESSION['ACCESS_LEVEL'];
                                                                                             } ?>
                                                                                 });
+                                                                                $('#logstimeline').load('server_logs.php');
                                                                             }
                                                                         }
                                                                     });
@@ -467,6 +471,7 @@
                                                                                                     echo $_SESSION['USER_ID'];
                                                                                                 } ?>
                                                                                         });
+                                                                                        $('#logstimeline').load('server_logs.php');
 
                                                                                     } else {
                                                                                         $('#tbod').load('show_admin_table.php', {
@@ -477,6 +482,7 @@
                                                                                                         echo $_SESSION['ACCESS_LEVEL'];
                                                                                                     } ?>
                                                                                         });
+                                                                                        $('#logstimeline').load('server_logs.php');
                                                                                     }
 
                                                                                 }
@@ -535,7 +541,7 @@
                                             url: "log-user-status.php",
                                             data: {
                                                 userid: btndata,
-                                                date: "<?php date_default_timezone_set('Asia/Manila');echo date('Y-m-d H:i:s');  ?>" ,
+                                                date: "<?php date_default_timezone_set('Asia/Manila'); echo date('Y-m-d H:i:s');  ?>" ,
                                                 status : 4,
                                                 editorid: <?php echo $_SESSION['USER_ID']; ?>
                                             },
@@ -573,6 +579,7 @@
                                                                                 echo $_SESSION['ACCESS_LEVEL'];
                                                                             } ?>
                                                                 });
+                                                                $('#logstimeline').load('server_logs.php');
                                                             } else {
                                                                 $('#tbod').load('show_admin_table.php', {
                                                                     id: <?php if (isset($_SESSION['USER_ID'])) {
@@ -582,6 +589,7 @@
                                                                                 echo $_SESSION['ACCESS_LEVEL'];
                                                                             } ?>
                                                                 });
+                                                                $('#logstimeline').load('server_logs.php');
                                                             }
 
                                                         }

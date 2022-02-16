@@ -177,8 +177,6 @@ function editnumber(phonenum) {
 
     $(document).ready(function() {
 
-
-
        $('#submit_user').click(function (e) { 
            e.preventDefault();
          

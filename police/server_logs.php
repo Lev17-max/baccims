@@ -6,7 +6,7 @@ include 'connection.php';
                                 JOIN `police` p ON log.USER_DETAILS_ID = p.USER_DETAILS_ID 
                                 JOIN user_details ud ON log.USER_DETAILS_ID = ud.ID
                                 JOIN police_rank prk ON p.POLICE_RANK_ID = prk.ID 
-                                GROUP BY p.USER_DETAILS_ID,YEAR(DATETIME_EDITED),MONTH(DATETIME_EDITED),DAY(DATETIME_EDITED),TIME(DATETIME_EDITED) ORDER BY DATETIME_EDITED DESC ;");
+                                GROUP BY p.USER_DETAILS_ID,YEAR(DATETIME_EDITED),MONTH(DATETIME_EDITED),DAY(DATETIME_EDITED),TIME(DATETIME_EDITED),HOUR(DATETIME_EDITED) ORDER BY DATETIME_EDITED DESC ;");
     $query->execute();
     $result = $query->fetchAll();
 

@@ -107,7 +107,7 @@
         // $('#reports').addClass('d-none');
      
         $('#message').addClass('d-none');
-  
+        $('#logs').addClass('d-none');
         $('#help').addClass('d-none');
         $('#maps').addClass('d-none');
         $('#name').text('Info Board');
@@ -123,7 +123,7 @@
         $('#users').addClass('d-none');
         $('#message').addClass('d-none');
         $('#help').addClass('d-none');
-      
+        $('#logs').addClass('d-none');
         
         $('#maps').removeClass('d-none');
         $('#name').text('Crime Map');
@@ -135,7 +135,8 @@
         $('#message').addClass('d-none');
         $('#info').addClass('d-none');
    
-        $('#help').addClass('d-none');
+        $('#help').addClass('d-none'); 
+        $('#logs').addClass('d-none');
     
         $('#users').addClass('d-none');
         $('#maps').addClass('d-none');
@@ -154,7 +155,7 @@
 
         $('#users').addClass('d-none');
         $('#maps').addClass('d-none');
-
+        $('#logs').addClass('d-none');
         $('#help').addClass('d-none');
         $('#name').text('Alert Message');
         $('#name2').text('Alert Message');
@@ -170,7 +171,7 @@
 
         $('#users').removeClass('d-none');
         $('#maps').addClass('d-none');
-
+        $('#logs').addClass('d-none');
         $('#contacts').addClass('d-none');
         $('#updaterecordform').addClass('d-none');
         $('#name').text('Users');
@@ -187,7 +188,7 @@
     
         $('#users').addClass('d-none');
         $('#maps').addClass('d-none');
-  
+        $('#logs').addClass('d-none');
         $('#contacts').removeClass('d-none');
      
         $('#help').addClass('d-none');
@@ -199,7 +200,7 @@
         $('#message').addClass('d-none');
         $('#info').addClass('d-none');
         // $('#reports').addClass('d-none');
- 
+        $('#logs').addClass('d-none');
         $('#users').addClass('d-none');
         $('#maps').addClass('d-none');
  
@@ -208,6 +209,22 @@
      
         $('#name').text('Help');
         $('#name2').text('Help');
+
+    });
+    $('#sidebar-logs').click(function(e) {
+        $('#message').addClass('d-none');
+        $('#info').addClass('d-none');
+        // $('#reports').addClass('d-none');
+        $('#recordform').addClass('d-none');
+        $('#users').addClass('d-none');
+        $('#maps').addClass('d-none');
+        $('#reports').addClass('d-none');
+        $('#contacts').addClass('d-none');
+        $('#logs').removeClass('d-none');
+        $('#updaterecordform').addClass('d-none');
+        $('#help').addClass('d-none');
+        $('#name').text('Logs');
+        $('#name2').text('Logs');
 
     });
 

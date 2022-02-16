@@ -1,12 +1,15 @@
 <?php
 
 include 'connection.php';
-
+date_default_timezone_set('Asia/Manila');
+$stats = 5;
 if (!isset($_POST['rank'])) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
     $type = $_POST['type'];
+    $now = date('Y-m-d H:i:s');
+    $sender = $_POST['admin_sender'];
 
     $usernameenc = md5($username);
     $encryptedPass = md5($password);
@@ -37,7 +40,19 @@ if (!isset($_POST['rank'])) {
                 $insertid2->bindParam(':id', $id);
                 $insertid2->execute();
                 if ($insertid2) {
-                    header("location:home.php?successaddpersonel");
+                    $insertlog = $connect->prepare("INSERT INTO `user_logs` (`USER_ID`,`DATETIME_EDITED`,`STATUS`,`USER_DETAILS_ID`) 
+                                                        VALUES(:id,:datenow,:stats,:sender)");
+                    $insertlog->bindParam(':id', $id);
+                    $insertlog->bindParam(':datenow', $now);
+                    $insertlog->bindParam(':stats', $stats);
+                    $insertlog->bindParam(':sender', $sender);
+
+                    $insertlog->execute();
+                    if ($insertlog) {
+                        header("location:home.php?successaddpersonel");
+                    } else {
+                        header("location:home.php?erroraddpersonel");
+                    }
                 } else {
                     header("location:home.php?erroraddpersonel");
                 }
@@ -54,6 +69,8 @@ if (!isset($_POST['rank'])) {
     $password = $_POST['password'];
     $type = $_POST['type'];
     $rank = $_POST['rank'];
+    $now = date('Y-m-d H:i:s');
+    $sender = $_POST['admin_sender'];
 
     $usernameenc = md5($username);
     $encryptedPass = md5($password);
@@ -88,12 +105,24 @@ if (!isset($_POST['rank'])) {
                     $insertrank->bindParam(':id', $id);
                     $insertrank->bindParam(':rank', $rank);
                     $insertrank->execute();
-                    if($insertrank){
-                         header("location:home.php?successaddpersonel");
-                    }else{
+                    if ($insertrank) {
+
+                        $insertlog = $connect->prepare("INSERT INTO `user_logs` (`USER_ID`,`DATETIME_EDITED`,`STATUS`,`USER_DETAILS_ID`) 
+                                                        VALUES(:id,:datenow,:stats,:sender)");
+                        $insertlog->bindParam(':id', $id);
+                        $insertlog->bindParam(':datenow', $now);
+                        $insertlog->bindParam(':stats', $stats);
+                        $insertlog->bindParam(':sender', $sender);
+
+                        $insertlog->execute();
+                        if ($insertlog) {
+                            header("location:home.php?successaddpersonel");
+                        } else {
+                            header("location:home.php?erroraddpersonel");
+                        }
+                    } else {
                         header("location:home.php?erroraddpersonel");
                     }
-                   
                 } else {
                     header("location:home.php?erroraddpersonel");
                 }
@@ -105,5 +134,4 @@ if (!isset($_POST['rank'])) {
         header("location:home.php?duplicateaddpersonel");
     }
 }
-
 ?>

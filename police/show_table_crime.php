@@ -25,8 +25,11 @@ foreach ($allcrimedatas as $crimedatas) {
              echo ucfirst(strtolower($value['LAST_NAME'])).' marked it <span class="badge badge-success"><i class="fas fa-check-circle"></i> Solved</span><br> on '.date('F d, Y g:i a', strtotime($key['DATETIME_EDITED']));
            }else if($key['STATUS'] == 0){
              echo ucfirst(strtolower($value['LAST_NAME'])).' marked it <span class="badge badge-danger"><i class="fas fa-file"></i> Filed</span> <br> on '.date('F d, Y g:i a', strtotime($key['DATETIME_EDITED']));
-           }else{
+           }elseif($key['STATUS'] == 3){
             echo ucfirst(strtolower($value['LAST_NAME'])).' <span class="badge badge-secondary"><i class="fas fa-pen"></i> Edited </span> the crime incident<br> on '.date('F d, Y g:i a', strtotime($key['DATETIME_EDITED']));   
+           }
+           elseif($key['STATUS'] == 2){
+            echo ucfirst(strtolower($value['LAST_NAME'])).' <span class="badge badge-secondary"><i class="fas fa-pen"></i> Recorded </span> the crime incident<br> on '.date('F d, Y g:i a', strtotime($key['DATETIME_EDITED']));   
            }
           
           echo '</small></td>';
