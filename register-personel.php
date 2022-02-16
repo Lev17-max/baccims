@@ -11,7 +11,7 @@ $birth = $_POST['birthday'];
 $phone = $_POST['phone'];
 $gender = $_POST['gender'];
 $terms = $_POST['terms'];
-$target_dir = "uploads/";
+$target_dir = "admin/uploads/";
 $target_fileF = $target_dir . basename($_FILES["frontID"]["name"]);
 $target_fileB = $target_dir . basename($_FILES["backID"]["name"]);
 $uploadOk = 1;
@@ -49,6 +49,9 @@ if (
                 rename($target_fileF, $newfilenameF);
                 rename($target_fileB, $newfilenameB);
 
+                $F = 'uploads/' . ucfirst(strtolower($lastname)) . '_' . ucfirst(strtolower($firstname)) . '_front_id' . '.' . end($tempF);
+                $B = 'uploads/' . ucfirst(strtolower($lastname)) . '_' . ucfirst(strtolower($firstname)) . '_back_id' . '.' . end($tempB);
+
                 //send database
                 $query1 = $connect->prepare("UPDATE `user_details` SET `FIRST_NAME` = :firstname , `MIDDLE_NAME` = :middlename, `LAST_NAME` =:lastname, `BIRTHDATE` = :birth, `PHONE` = :phone, `GENDER` = :gender,`ADDRESS` = :address, `FRONT_ID` = :fID, `BACK_ID` = :bID, `VERIFIED`= 1 where ID = :sesid");
                 $query1->bindParam(':firstname', $firstname);
@@ -58,8 +61,8 @@ if (
                 $query1->bindParam(':gender', $gender);
                 $query1->bindParam(':address', $address);
                 $query1->bindParam(':phone', $phone);
-                $query1->bindParam(':fID', $newfilenameF);
-                $query1->bindParam(':bID', $newfilenameB);
+                $query1->bindParam(':fID', $F);
+                $query1->bindParam(':bID', $B);
                 $query1->bindParam(':sesid', $session_id);
                 $query1->execute();
 
