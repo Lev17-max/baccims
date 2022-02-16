@@ -2,7 +2,9 @@
 
  include 'connection.php';
  $ok = 0;
-
+ date_default_timezone_set('Asia/Manila');
+ $now = date('Y-m-d H:i:s');
+ $sender = $_POST['incident-sender'];
  $ben = $_POST['blotter-no'];
  $dtReported = date('Y-m-d H:i:s',strtotime($_POST['datetime-reported']));
  $dtHappened = date('Y-m-d H:i:s',strtotime($_POST['datetime-happened']));
@@ -14,6 +16,7 @@
  $instruct = $_POST['case-disp'];
  $investigator = $_POST['case-investigator'];
  $chief = $_POST['case-chief'];
+
 
  //item-a
  $fmname_item_a = ucfirst(strtolower($_POST['item-a-family-name']));
@@ -116,7 +119,8 @@
 
                                   INSERT INTO `incident_case_disposition`(`BLOTTER_ENTRY_NUMBER`, `INSTRUCTION`, `INVESTIGATOR`, `CHIEF`) 
                                          VALUES (:ben,:instruct,:invst,:chief);
-                                         
+                                  INSERT INTO `record_logs`(`BLOTTER_ENTRY_NUMBER`, `DATETIME_EDITED`, `STATUS`,`USER_DETAILS_ID`) 
+                                         VALUES (:ben, :timenow, 2 ,:sender)                                      
                                          ');
 
 
@@ -148,6 +152,7 @@ $query ->bindParam(':work', $work_item_a);
 $query ->bindParam(':id_h',$id_have_item_a);
 $query ->bindParam(':email', $email_item_a);
 
+$query ->bindParam(':sender', $sender);
 $query ->bindParam(':ben', $ben);
 $query ->bindParam(':dtfil', $dtReported);
 $query ->bindParam(':inc',$incident);
@@ -155,7 +160,7 @@ $query ->bindParam(':stats', $status);
 $query ->bindParam(':det', $details);
 $query ->bindParam(':dthap', $dtHappened);
 $query ->bindParam(':place', $place);
-
+$query ->bindParam(':timenow', $now);
 $query ->bindParam(':instruct', $instruct);
 $query ->bindParam(':invst', $investigator);
 $query ->bindParam(':chief', $chief);

@@ -1,7 +1,8 @@
 <script>
     $('#sidebar-form').click(function (e) { 
         let date = new Date();
-        let val = date.getFullYear()+'-'+date.getMonth()+1+date.getMinutes()+'-'+date.getSeconds(); 
+        let val = date.getFullYear()+'-'+date.getMonth()+1+date.getDate()+'-'+date.getMinutes()+date.getSeconds(); 
+        console.log(val);
         $(".blot-num").val(val);
 
         

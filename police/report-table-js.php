@@ -105,9 +105,11 @@
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
                                                                 $('#tbodcrimelist').load('show_table_crime.php');
+                                                                $('#logstimeline').load('server_logs.php');
                                                         }else{
                                                 
                                                             $('#tbodcrimelist').load('show_table_crime.php');
+                                                            $('#logstimeline').load('server_logs.php');
                                                         }
                                                     });
                                              }else{

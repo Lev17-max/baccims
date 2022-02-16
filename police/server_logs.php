@@ -55,12 +55,14 @@ include 'connection.php';
 
                               if($word[1] == 1){
                                 echo 'Marked <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span>  as <span class="badge badge-success"><i class="fas fa-check-circle"></i> Solved</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
-                            }else if($word[1] == 0){
+                              }else if($word[1] == 0){
                                 echo 'Marked  <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span> as <span class="badge badge-danger"><i class="fas fa-file"></i> Filed</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
-                              }else{
+                              }else if($word[1] == 3){
                                echo '<span class="badge badge-secondary"><i class="fas fa-pen"></i> Modified </span>  <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
-
                               }
+                              else if($word[1] == 2){
+                                echo '<span class="badge badge-secondary"><i class="fas fa-pen"></i> Recorded </span>  <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
+                               }
                           }
 
                            
@@ -93,12 +95,14 @@ include 'connection.php';
 
                               if($word[1] == 1){
                                 echo 'Marked <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span>  as <span class="badge badge-success"><i class="fas fa-check-circle"></i> Solved</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
-                            }else if($word[1] == 0){
+                              }else if($word[1] == 0){
                                 echo 'Marked  <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span> as <span class="badge badge-danger"><i class="fas fa-file"></i> Filed</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
-                              }else{
+                              }else if($word[1] == 3){
                                echo '<span class="badge badge-secondary"><i class="fas fa-pen"></i> Modified </span>  <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
-
                               }
+                              else if($word[1] == 2){
+                                echo '<span class="badge badge-secondary"><i class="fas fa-pen"></i> Recorded </span>  <span class="badge badge-primary"><i class="fas fa-file"></i> ' .$word[0].'</span> on <small class="badge badge-secondary"><i class="far fa-clock"></i> '.date('g:i a', strtotime($data['TIME'])) .'</small><br>';
+                               }
                           }
 
                            

@@ -6,6 +6,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-lg-3">
+                        <input type="hidden" class="d-none" value="<?php echo $_SESSION['USER_ID']; ?>"name="incident-sender">
                         <div class="form-group">
                             <label>BLOTTER ENTRY NUMBER:</label>
                             <div class="input-group mb-3">
