@@ -1,8 +1,8 @@
 <?php 
 include 'connection.php';
 
-$target_dir = "dist/img/incident-icon/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$target_dir = "../dist/img/incident_icon/";
+$target_file = $target_dir . basename($_FILES["incident"]["name"]);
 $upload = 1;
 
    if(file_exists($target_dir)){
@@ -11,20 +11,25 @@ $upload = 1;
        mkdir($target_dir);
    }
 
-if ($_FILES["file"]["size"] > (5 * 1024 * 1024)) {
+if ($_FILES["incident"]["size"] > (5 * 1024 * 1024)) {
     $upload= 0;
 }
 
  if(isset($_POST['name']) && isset($target_file)){
     if($upload == 1){
-        if (move_uploaded_file($_FILES['file']["tmp_name"], $target_file)) {
+        if (move_uploaded_file($_FILES['incident']["tmp_name"], $target_file)) {
             $name = $_POST['name'];
-            $temp = explode(".", $_FILES['file']["name"]);
-            $newfilename = $name.'.'.end($temp);
+            $temp = explode(".", $_FILES['incident']["name"]);
+            $newfilename = $target_dir.$name.'.'.end($temp);
             rename($target_file, $newfilename);
+
+            $new = $name.'.'.end($temp);
+         
+           
+
             $query = $connect->prepare('INSERT INTO `incident_type`(`NAME`, `ICON`) VALUES (:names, :icon)');
             $query->bindParam(':names', $name);
-            $query->bindParam(':icon',$newfilename);
+            $query->bindParam(':icon',$new);
             $query-> execute();
 
             if($query){

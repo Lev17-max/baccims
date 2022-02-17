@@ -192,7 +192,7 @@
              Swal.fire({
                 title: 'Add Incident Type',
                 html:
-                    '<form method="post" action="" enctype="multipart/form-data"><div class="form-group overflow-hidden">' +
+                    '<form method="post" enctype="multipart/form-data"><div class="form-group overflow-hidden">' +
                     '<div class="user-post-text-wrap"><div class="user-txt-post p-0"><input id="inc-name" class="form-control" name="subject" placeholder="Incident Name:"></div></div>' +
                     '<label for="input-inc"> Select Icon </label><input type="file" accept=".png" placeholder="Choose Icon" name="inc-icon" class="form-control hidden" id="input-inc" onChange="uploadInc(this)" required>'+
                     '<center><div class="card m-0 p-0 row"><div class="card-body w-25 col align-self-center"><img id="image-holder-inc" width="50px" height="50px"class="info-box d-none">  </center>'+
@@ -204,11 +204,12 @@
                 },
                 showCancelButton: true,
                 preConfirm: (value) => {
-                    var name = document.getElementById('inc-name').value;
-                    var fd = new FormData();
-                    var files = $('#input-inc')[0].files[0]; 
-                    fd.append('file',files);
+                    let name = document.getElementById('inc-name').value;
+                    let fd = new FormData();
+                    let files = $('#input-inc')[0].files[0]; 
+                    fd.append('incident',files);
                     fd.append('name', name);
+
                     if (name) {
                         $.ajax({
                             url: "add_incident.php",

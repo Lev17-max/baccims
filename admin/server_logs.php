@@ -14,9 +14,9 @@ $query = $connect->prepare("SELECT log.USER_ID AS USER_ID, ud.FIRST_NAME as FIRS
                                 GROUP BY log.USER_DETAILS_ID,YEAR(DATETIME_EDITED),MONTH(DATETIME_EDITED),DAY(DATETIME_EDITED),TIME(DATETIME_EDITED),HOUR(DATETIME_EDITED) ORDER BY DATETIME_EDITED DESC;");
 $query->execute();
 $result = $query->fetchAll();
-$pol = $connect->prepare("SELECT * FROM `police`p 
-                              JOIN police_rank prnk ON p.USER_DETAILS_ID = prnk.ID
-                              WHERE USER_DETAILS_ID = ?");
+$pol = $connect->prepare("SELECT * FROM `police` p 
+                          JOIN police_rank prnk ON prnk.ID = p.POLICE_RANK_ID
+                          WHERE USER_DETAILS_ID = ?");
 
 
 $pastDate = '';

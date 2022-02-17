@@ -38,7 +38,7 @@
 
 
               for (let index = 0; index <= maparr.length - 1; index++) {
-                var fileloc = "dist/img/low/" + maparr[index]['ICON'];
+                var fileloc = "dist/img/incident_icon/" + maparr[index]['ICON'];
            
                 let a;
                 if(maparr[index]['TOTAL'] > maparr[index]['TOTAL_CRIMES']){
@@ -83,7 +83,7 @@
             // console.log(counts['3']);
 
             for (let index = 0; index < arr.length; index++) {
-              var fileloc = "dist/img/low/" + arr[index]['ICON'];
+              var fileloc = "dist/img/incident_icon/" + arr[index]['ICON'];
               // var flag;
               // let st = arr[index]['PLACE_ID'];
            
@@ -113,46 +113,6 @@
 
 
       }
-
-
-
-
-      // $.ajax({
-      //   type: "POST",
-      //   url: "map-query-all-admin.php",
-      //   data: {
-      //     year: year,
-      //   },
-      //   success: function (response) {
-
-      //     if (response.length <= 0) {
-      //       remove_markers();
-      //     } else {
-
-      //       var maparr = JSON.parse(response);
-
-
-      //       remove_markers();
-
-
-      //       for (let index = 0; index <= maparr.length - 1; index++) {
-      //         var fileloc = "dist/img/low/" + maparr[index]['ICON'];
-
-      //         let stringData = assignLabel(maparr[index]['TOTAL'],maparr.length - 1,maparr[index]['ICON']);
-
-
-      //         // https://c.tenor.com/37UlvShPJG8AAAAi/ezo-snowflakes.gif
-      //         //https://c.tenor.com/VUH3A7tK-qgAAAAi/dm4uz3-foekoe.gif
-      //         //https://c.tenor.com/dRMvP5Gzb0MAAAAj/rain-raining.gif
-      //         addMarkers(maparr[index]['LATITUDE'], maparr[index]['LONGITUDE'], fileloc, stringData, maparr[index]['TOTAL']);
-
-      //       }
-      //     }
-
-
-
-      //   }
-      // });
 
 
 
@@ -203,7 +163,7 @@
               remove_markers();
 
               for (let index = 0; index <= maparr.length - 1; index++) {
-                var fileloc = "dist/img/low/" + maparr[index]['ICON'];
+                var fileloc = "dist/img/incident_icon/" + maparr[index]['ICON'];
 
 
                 // let stringData = assignLabel(maparr[index]['TOTAL'], maparr.length - 1, maparr[index]['ICON'],maparr[index]['PHASE'],maparr[index]['PUROK']);
@@ -266,7 +226,7 @@
               remove_markers();
 
               for (let index = 0; index <= maparr.length - 1; index++) {
-                var fileloc = "dist/img/low/" + maparr[index]['ICON'];
+                var fileloc = "dist/img/incident_icon/" + maparr[index]['ICON'];
 
                 let a;
                 if(maparr[index]['TOTAL'] > maparr[index]['TOTAL_CRIMES']){

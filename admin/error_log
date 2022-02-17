@@ -1084,3 +1084,12 @@ Stack trace:
 [09-Feb-2022 13:16:11 Asia/Manila] PHP Notice:  Undefined index: blot_num in /home/baccdxee/public_html/form-c-update.php on line 4
 [09-Feb-2022 13:16:35 Asia/Manila] PHP Notice:  Undefined index: blot_num in /home/baccdxee/public_html/form-b-update.php on line 5
 [09-Feb-2022 13:16:35 Asia/Manila] PHP Notice:  Undefined index: blot_num in /home/baccdxee/public_html/form-c-update.php on line 4
+[16-Feb-2022 15:32:03 Asia/Manila] PHP Notice:  Undefined variable: connect in /home/baccdxee/public_html/admin/server_logs.php on line 5
+[16-Feb-2022 15:32:03 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/baccdxee/public_html/admin/server_logs.php:5
+Stack trace:
+#0 /home/baccdxee/public_html/admin/logs.php(14): include()
+#1 /home/baccdxee/public_html/admin/admin_home.php(33): include('/home/baccdxee/...')
+#2 /home/baccdxee/public_html/admin/session_level.php(24): include('/home/baccdxee/...')
+#3 /home/baccdxee/public_html/admin/home.php(29): include('/home/baccdxee/...')
+#4 {main}
+  thrown in /home/baccdxee/public_html/admin/server_logs.php on line 5
