@@ -13,6 +13,7 @@
                 <p class="d-flex flex-column">
                     To add new Crime Incident, You need to prepare an icon of the crime. Go to the "Incident Record Form" tab and click "Type of Incident" then choose the "Other" option to add another Crime incident 
                   <br>
+                  <b class="text-danger">Icon must be in <a href="https://fileinfo.com/extension/png#:~:text=A%20PNG%20file%20is%20an,lossless%20compression%20and%20supports%20transparency" target="_blank">.PNG</a> file format and must not use <a href="https://fileinfo.com/extension/jpeg" target="_blank">.JPG/JPEG</a> file format to fit in the map </b>
                   <!-- <a href="https://www.google.com/maps/place/Handumanan,+Bacolod,+Negros+Occidental/">www.google.com/maps</a> -->
                 </p>
                  

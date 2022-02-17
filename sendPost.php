@@ -9,6 +9,12 @@ $name = '';
 include 'connection.php';
 $uploadStats = 0;
 
+if(file_exists($target_dir)){
+
+}else{
+	mkdir($target_dir);
+}
+
 
 
 

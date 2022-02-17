@@ -116,7 +116,7 @@
                 $data = $query->fetchAll();
                 foreach ($data as $row2) {
 
-                    echo '  <a class="btn btn-app"><img width="20" src="../dist/img/low/' . $row2['ICON'] . '"><br> ' . $row2['NAME'] . ' </a>';
+                    echo '  <a class="btn btn-app"><img width="20" src="../dist/img/incident_icon/' . $row2['ICON'] . '"><br> ' . $row2['NAME'] . ' </a>';
                 }    ?>
             </div>
         </div>

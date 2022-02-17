@@ -100,7 +100,7 @@
 
       let stringData = '';
 
-      if (level < 25 && arrayLength > 0) {
+      if ((level < 25 && arrayLength > 0) || arrayLength == 1 ) {
        
        // stringData = '<img width="30" src=" https://c.tenor.com/37UlvShPJG8AAAAi/ezo-snowflakes.gif">';
        stringData = '<img width="30" src="dist/img/level/low.png"><span class="badge badge-secondary">'+phase+' '+purok+'</span>';

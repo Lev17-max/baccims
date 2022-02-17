@@ -38,7 +38,7 @@
 
 
               for (let index = 0; index <= maparr.length - 1; index++) {
-                var fileloc = "../dist/img/low/" + maparr[index]['ICON'];
+                var fileloc = "../dist/img/incident_icon/" + maparr[index]['ICON'];
            
                 let a;
                 if(maparr[index]['TOTAL'] > maparr[index]['TOTAL_CRIMES']){
@@ -83,7 +83,7 @@
             // console.log(counts['3']);
 
             for (let index = 0; index < arr.length; index++) {
-              var fileloc = "../dist/img/low/" + arr[index]['ICON'];
+              var fileloc = "../dist/img/incident_icon/" + arr[index]['ICON'];
               // var flag;
               // let st = arr[index]['PLACE_ID'];
            
@@ -203,7 +203,7 @@
               remove_markers();
 
               for (let index = 0; index <= maparr.length - 1; index++) {
-                var fileloc = "../dist/img/low/" + maparr[index]['ICON'];
+                var fileloc = "../dist/img/incident_icon/" + maparr[index]['ICON'];
 
 
                 // let stringData = assignLabel(maparr[index]['TOTAL'], maparr.length - 1, maparr[index]['ICON'],maparr[index]['PHASE'],maparr[index]['PUROK']);
@@ -266,7 +266,7 @@
               remove_markers();
 
               for (let index = 0; index <= maparr.length - 1; index++) {
-                var fileloc = "../dist/img/low/" + maparr[index]['ICON'];
+                var fileloc = "../dist/img/incident_icon/" + maparr[index]['ICON'];
 
                 let a;
                 if(maparr[index]['TOTAL'] > maparr[index]['TOTAL_CRIMES']){
@@ -316,7 +316,7 @@
       let stringData = '';
 
 
-      if (level < 25 && arrayLength > 0) {
+      if ((level < 25 && arrayLength > 0 ) || arrayLength == 1  ) {
        
         // stringData = '<img width="30" src=" https://c.tenor.com/37UlvShPJG8AAAAi/ezo-snowflakes.gif">';
         stringData = '<img width="30" src="../dist/img/level/low.png"><span class="badge badge-secondary">'+phase+' '+purok+'</span>';

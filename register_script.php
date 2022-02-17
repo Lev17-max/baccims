@@ -19,6 +19,12 @@ $id = '';
 $date = DateTime::createFromFormat('d/m/Y', $birth); 
 $birthdate = $date->format('Y-m-d');
 
+if(file_exists($target_dir)){
+
+}else{
+    mkdir($target_dir);
+}
+
 // Check file size
 if ($_FILES["frontID"]["size"] > (5 * 1024 * 1024) && $_FILES["backID"]["size"] > (5 * 1024 * 1024)) {
 
